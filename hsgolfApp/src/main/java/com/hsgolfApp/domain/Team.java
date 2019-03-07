@@ -1,0 +1,102 @@
+package com.hsgolfApp.domain;
+
+import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+@Entity
+public class Team {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+	
+	@ManyToOne
+	@JoinColumn(name = "fk_league")
+	private League leauge;
+	
+	@OneToMany(mappedBy = "team")
+	private List<User> userList = new ArrayList<User>();
+	
+	private String name;
+	private String address;
+	private String phone;
+	private Color color1;
+	private Color color2;
+	private String logoFile;
+	private String mascot;
+	
+	
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public League getLeauge() {
+		return leauge;
+	}
+	public void setLeauge(League leauge) {
+		this.leauge = leauge;
+	}
+	public List<User> getUserList() {
+		return userList;
+	}
+	public void setUserList(List<User> userList) {
+		this.userList = userList;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public Color getColor1() {
+		return color1;
+	}
+	public void setColor1(Color color1) {
+		this.color1 = color1;
+	}
+	public Color getColor2() {
+		return color2;
+	}
+	public void setColor2(Color color2) {
+		this.color2 = color2;
+	}
+	public String getLogoFile() {
+		return logoFile;
+	}
+	public void setLogoFile(String logoFile) {
+		this.logoFile = logoFile;
+	}
+	public String getMascot() {
+		return mascot;
+	}
+	public void setMascot(String mascot) {
+		this.mascot = mascot;
+	}
+	
+	
+	
+
+}
