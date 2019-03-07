@@ -31,6 +31,19 @@ public class League {
 	private List<Team> teams = new ArrayList<Team>();
 	
 	private String name;
+	
+	public League() {}
+	
+
+	public League(Division division, Section section, Region region, String name) {
+		super();
+		this.division = division;
+		this.section = section;
+		this.region = region;
+		this.name = name;
+	}
+
+
 
 	public Long getId() {
 		return id;

@@ -21,10 +21,16 @@ public class Team {
 	
 	@ManyToOne
 	@JoinColumn(name = "fk_league")
-	private League leauge;
+	private League league;
 	
 	@OneToMany(mappedBy = "team")
 	private List<User> userList = new ArrayList<User>();
+	
+	@OneToMany(mappedBy = "awayTeam")
+	private List<Match> awayMatchList = new ArrayList<Match>();
+	
+	@OneToMany(mappedBy = "homeTeam")
+	private List<Match> homeMatchList = new ArrayList<Match>();
 	
 	private String name;
 	private String address;
@@ -35,18 +41,35 @@ public class Team {
 	private String mascot;
 	
 	
+	public Team() {}
+	
+	public Team(League league, String name, String address, String phone, Color color1,
+			Color color2, String logoFile, String mascot) {
+		super();
+		this.league = league;
+		this.name = name;
+		this.address = address;
+		this.phone = phone;
+		this.color1 = color1;
+		this.color2 = color2;
+		this.logoFile = logoFile;
+		this.mascot = mascot;
+	}
+
+
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public League getLeauge() {
-		return leauge;
+	public League getLeague() {
+		return league;
 	}
-	public void setLeauge(League leauge) {
-		this.leauge = leauge;
+	public void setLeague(League league) {
+		this.league = league;
 	}
+
 	public List<User> getUserList() {
 		return userList;
 	}
@@ -96,7 +119,21 @@ public class Team {
 		this.mascot = mascot;
 	}
 	
-	
+	public List<Match> getAwayMatchList() {
+		return awayMatchList;
+	}
+
+	public void setAwayMatchList(List<Match> awayMatchList) {
+		this.awayMatchList = awayMatchList;
+	}
+
+	public List<Match> getHomeMatchList() {
+		return homeMatchList;
+	}
+
+	public void setHomeMatchList(List<Match> homeMatchList) {
+		this.homeMatchList = homeMatchList;
+	}
 	
 
 }

@@ -1,5 +1,8 @@
 package com.hsgolfApp.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -8,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -25,6 +29,9 @@ public class User {
 	@JoinColumn(name = "fk_team")
 	private Team team;
 	
+	@OneToMany(mappedBy = "player")
+	private List<Score> scores = new ArrayList<Score>();
+	
 	private String firstName;
 	private String lastName;
 	private String gender;
@@ -33,6 +40,24 @@ public class User {
 	private String userName;
 	private String password;
 	
+	public User() {	}
+	
+	
+	public User(UserType type, Team team, String firstName, String lastName, String gender, String email, String phone,
+			String userName, String password) {
+		super();
+		this.type = type;
+		this.team = team;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.gender = gender;
+		this.email = email;
+		this.phone = phone;
+		this.userName = userName;
+		this.password = password;
+	}
+
+
 	public Long getId() {
 		return id;
 	}
@@ -94,6 +119,13 @@ public class User {
 		this.password = password;
 	}
 	
-	
+	public List<Score> getScores() {
+		return scores;
+	}
+
+
+	public void setScores(List<Score> scores) {
+		this.scores = scores;
+	}
 
 }
